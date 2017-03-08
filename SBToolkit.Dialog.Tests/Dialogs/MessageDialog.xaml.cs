@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SBToolkit.MVVM.Dialog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,6 @@ namespace SBToolkit.Dialog.Tests.Dialogs
         public MessageDialog()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

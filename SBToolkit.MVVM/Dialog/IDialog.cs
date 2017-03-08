@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
 
-namespace SBToolkit.Dialog
+namespace SBToolkit.MVVM.Dialog
 {
     public interface IDialog
     {
@@ -52,6 +47,5 @@ namespace SBToolkit.Dialog
         bool? ShowDialog();
 
         #endregion
-
     }
 }

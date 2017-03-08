@@ -1,5 +1,6 @@
 ﻿using SBToolkit.Dialog.Tests.Dialogs;
 using SBToolkit.Dialog.Tests.ViewModels;
+using SBToolkit.MVVM.Dialog;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

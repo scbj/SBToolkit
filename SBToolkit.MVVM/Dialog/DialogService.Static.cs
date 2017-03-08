@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
-namespace SBToolkit.Dialog
+namespace SBToolkit.MVVM.Dialog
 {
     public partial class DialogService
     {
@@ -18,7 +14,7 @@ namespace SBToolkit.Dialog
 
         #region Methods
 
-		public static void Initialize(Window owner)
+        public static void Initialize(Window owner)
         {
             _owner = owner;
 

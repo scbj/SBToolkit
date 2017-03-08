@@ -1,4 +1,5 @@
 ﻿using SBToolkit.Dialog.Tests.ViewModels;
+using SBToolkit.MVVM.Dialog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace SBToolkit.Dialog.Tests
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = new MessageDialogViewModel("Nouvelle mis à jour", "Une nouvelle mise à jour est disponible. Téléchargez là sans attendre !");
-            bool? result = DialogService.Show(viewModel);
+            bool? result = DialogService.Show(viewModel, false);
         }
     }
 }

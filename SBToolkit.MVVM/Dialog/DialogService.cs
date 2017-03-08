@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
-namespace SBToolkit.Dialog
+namespace SBToolkit.MVVM.Dialog
 {
     public partial class DialogService
     {
@@ -38,7 +34,7 @@ namespace SBToolkit.Dialog
         public bool? ShowDialog<TViewModel>(TViewModel viewModel, bool canClose) where TViewModel : IDialogRequestClose
         {
             IDialog dialog = GetDialogInstance(typeof(TViewModel));
-            
+
             if (dialog == null)
                 throw new ArgumentException($"There are no {typeof(TViewModel)} type register in the service.");
 
@@ -56,7 +52,7 @@ namespace SBToolkit.Dialog
                     dialog.Closing -= Dialog_Closing;
 
                 // Set dialog result and close the dialog.
-                dialog.DialogResult = b;                
+                dialog.DialogResult = b;
 
                 dialog.Close();
             };

@@ -1,5 +1,5 @@
 ﻿using PropertyChanged;
-using SBToolkit.Dialog;
+using SBToolkit.MVVM.Dialog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
