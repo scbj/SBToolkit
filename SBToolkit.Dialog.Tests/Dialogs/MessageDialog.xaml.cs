@@ -20,9 +20,6 @@ namespace SBToolkit.Dialog.Tests.Dialogs
     /// </summary>
     public partial class MessageDialog : Window, IDialog
     {
-        public MessageDialog()
-        {
-            InitializeComponent();
-        }
+        public MessageDialog() => InitializeComponent();
     }
 }

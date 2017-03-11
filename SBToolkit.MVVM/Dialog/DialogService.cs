@@ -10,10 +10,7 @@ namespace SBToolkit.MVVM.Dialog
 
         #region Constructors
 
-        private DialogService()
-        {
-            _mappings = new Dictionary<Type, Type>();
-        }
+        private DialogService() => _mappings = new Dictionary<Type, Type>();
 
         #endregion
 
@@ -33,36 +30,34 @@ namespace SBToolkit.MVVM.Dialog
 
         public bool? ShowDialog<TViewModel>(TViewModel viewModel, bool canClose) where TViewModel : IDialogRequestClose
         {
-            IDialog dialog = GetDialogInstance(typeof(TViewModel));
-
-            if (dialog == null)
-                throw new ArgumentException($"There are no {typeof(TViewModel)} type register in the service.");
+            IDialog dialog = GetDialogInstance(typeof(TViewModel))
+                ?? throw new ArgumentException($"There are no {typeof(TViewModel)} type register in the service.");
 
             if (!canClose)
                 dialog.Closing += Dialog_Closing;
 
-            Action<bool?> handler = null;
 
-            handler = (b) =>
-            {
-                // Unsubscribe to events.
-                viewModel.CloseRequested -= handler;
-
-                if (!canClose)
-                    dialog.Closing -= Dialog_Closing;
-
-                // Set dialog result and close the dialog.
-                dialog.DialogResult = b;
-
-                dialog.Close();
-            };
-
-            viewModel.CloseRequested += handler;
+            viewModel.CloseRequested += OnCloseRequested;
 
             dialog.DataContext = viewModel;
             dialog.Owner = _owner;
 
             return dialog.ShowDialog();
+
+
+            void OnCloseRequested(bool? dialogResult)
+            {
+                // Unsubscribe to events.
+                viewModel.CloseRequested -= OnCloseRequested;
+
+                if (!canClose)
+                    dialog.Closing -= Dialog_Closing;
+
+                // Set dialog result and close the dialog.
+                dialog.DialogResult = dialogResult;
+
+                dialog.Close();
+            }
         }
 
         #endregion
@@ -71,10 +66,8 @@ namespace SBToolkit.MVVM.Dialog
 
         private IDialog GetDialogInstance(Type viewModelType)
         {
-            if (!_mappings.ContainsKey(viewModelType))
+            if (!_mappings.TryGetValue(viewModelType, out Type viewType))
                 return null;
-
-            Type viewType = _mappings[viewModelType];
 
             return (IDialog)Activator.CreateInstance(viewType);
         }

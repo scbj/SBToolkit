@@ -38,8 +38,10 @@ namespace SBToolkit.Dialog.Tests.ViewModels
 
         public string Message { get; set; }
 
+        [DoNotNotify]
         public ICommand ContinueCommand { get; set; }
 
+        [DoNotNotify]
         public ICommand UndoCommand { get; set; }
 
         #endregion
@@ -47,15 +49,9 @@ namespace SBToolkit.Dialog.Tests.ViewModels
         #region Methods
 
 
-        private void Continue(object obj)
-        {
-            CloseRequested?.Invoke(true);
-        }
+        private void Continue(object obj) => CloseRequested?.Invoke(true);
 
-        private void Undo(object obj)
-        {
-            CloseRequested?.Invoke(false);
-        }
+        private void Undo(object obj) => CloseRequested?.Invoke(false);
 
         #endregion
     }

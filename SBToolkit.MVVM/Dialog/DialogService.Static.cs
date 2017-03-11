@@ -14,14 +14,16 @@ namespace SBToolkit.MVVM.Dialog
 
         #region Methods
 
+        /// <summary>
+        /// Instanciate a singleton <see cref="DialogService"/> and initialize components.
+        /// </summary>
+        /// <param name="owner">The <see cref="Window"/> you want to define as the owner of the dialog.</param>
         public static void Initialize(Window owner)
         {
             _owner = owner;
 
             _instance = new DialogService();
         }
-
-        #endregion
 
         /// <summary>
         /// Register the specified view model for the specified view.
@@ -52,5 +54,7 @@ namespace SBToolkit.MVVM.Dialog
 
             return _instance.ShowDialog(viewModel, canClose);
         }
+
+        #endregion
     }
 }
