@@ -6,7 +6,11 @@ namespace SBToolkit.MVVM.Dialog
 {
     public partial class DialogService
     {
+        #region Fields
+
         private IDictionary<Type, Type> _mappings;
+
+        #endregion
 
         #region Constructors
 
@@ -30,12 +34,12 @@ namespace SBToolkit.MVVM.Dialog
 
         public bool? ShowDialog<TViewModel>(TViewModel viewModel, bool canClose) where TViewModel : IDialogRequestClose
         {
+            // If GetDialogInstance method return null throw new ArgumentException.
             IDialog dialog = GetDialogInstance(typeof(TViewModel))
                 ?? throw new ArgumentException($"There are no {typeof(TViewModel)} type register in the service.");
 
             if (!canClose)
                 dialog.Closing += Dialog_Closing;
-
 
             viewModel.CloseRequested += OnCloseRequested;
 
@@ -43,8 +47,7 @@ namespace SBToolkit.MVVM.Dialog
             dialog.Owner = _owner;
 
             return dialog.ShowDialog();
-
-
+            
             void OnCloseRequested(bool? dialogResult)
             {
                 // Unsubscribe to events.
