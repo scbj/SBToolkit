@@ -62,7 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\ActionCommand.cs" />
     <Compile Include="ViewModels\MessageDialogViewModel.cs" />
     <Page Include="Dialogs\MessageDialog.xaml">
       <SubType>Designer</SubType>

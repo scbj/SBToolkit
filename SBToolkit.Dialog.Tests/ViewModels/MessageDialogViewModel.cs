@@ -1,11 +1,13 @@
 ﻿using PropertyChanged;
 using SBToolkit.MVVM.Dialog;
+using SBToolkit.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SBToolkit.Dialog.Tests.ViewModels
@@ -26,8 +28,8 @@ namespace SBToolkit.Dialog.Tests.ViewModels
             Title = title;
             Message = message;
 
-            ContinueCommand = new ActionCommand(Continue);
-            UndoCommand = new ActionCommand(Undo);
+            ContinueCommand = new RelayCommand(ContinueAction);
+            UndoCommand = new RelayCommand(UndoAction);
         }
 
         #endregion
@@ -37,6 +39,8 @@ namespace SBToolkit.Dialog.Tests.ViewModels
         public string Title { get; set; }
 
         public string Message { get; set; }
+
+        public Visibility UndoVisibility => Visibility.Visible;
 
         [DoNotNotify]
         public ICommand ContinueCommand { get; set; }
@@ -48,10 +52,9 @@ namespace SBToolkit.Dialog.Tests.ViewModels
 
         #region Methods
 
+        private void ContinueAction() => CloseRequested?.Invoke(true);
 
-        private void Continue(object obj) => CloseRequested?.Invoke(true);
-
-        private void Undo(object obj) => CloseRequested?.Invoke(false);
+        private void UndoAction() => CloseRequested?.Invoke(false);
 
         #endregion
     }
