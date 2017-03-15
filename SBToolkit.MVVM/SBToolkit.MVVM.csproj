@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseConverter.cs" />
+    <Compile Include="Converters\ConverterHelper.cs" />
     <Compile Include="Dialog\DialogService.cs" />
     <Compile Include="Dialog\IDialog.cs" />
     <Compile Include="Dialog\IDialogRequestClose.cs" />

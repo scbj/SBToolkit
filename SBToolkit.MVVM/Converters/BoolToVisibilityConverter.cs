@@ -13,7 +13,8 @@ namespace SBToolkit.MVVM.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool result = (bool)value;
+            // If value is a boolean get the value else initialize at false.
+            bool result = value is bool ? (bool)value : false;
 
             if (parameter is string s && Boolean.TryParse(s, out bool isInverted) && isInverted)
                 result ^= true;
